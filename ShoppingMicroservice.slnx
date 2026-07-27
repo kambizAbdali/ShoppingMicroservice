@@ -5,4 +5,7 @@
     <Project Path="Catalog.Core/Catalog.Core.csproj" />
     <Project Path="Catalog.Infrastructure/Catalog.Infrastructure.csproj" />
   </Folder>
+  <Project Path="docker-compose.dcproj">
+    <Build />
+  </Project>
 </Solution>
