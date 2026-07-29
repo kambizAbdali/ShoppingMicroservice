@@ -21,6 +21,14 @@ namespace Catalog.Application.Mapper
             CreateMap<Product, UpdateProductCommand>().ReverseMap();
             CreateMap<Pagination<Product>, Pagination<ProductResponse>>();
 
+            CreateMap<Pagination<Product>, Pagination<ProductResponse>>()
+    .ConstructUsing((src, ctx) => new Pagination<ProductResponse>(
+        src.PageIndex,
+        src.PageSize,
+        src.PageCount,
+        src.Data.Select(item => ctx.Mapper.Map<ProductResponse>(item)).ToList()
+    ));
+
         }
     }
 }

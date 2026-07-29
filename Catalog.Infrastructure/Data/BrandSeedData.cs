@@ -14,7 +14,12 @@ namespace Catalog.Infrastructure.Data
             var existCollection = collection.Find(x => true).Any();
             if (existCollection) return;
 
-            var jsonPath = Path.Combine(AppContext.BaseDirectory, "Data", "SeedData", "brands.txt");
+            // استفاده از مسیر ترکیبی ایمن‌تر
+            var jsonPath = Path.Combine(AppContext.BaseDirectory, "Data", "SeedData", "brands.json");
+
+            // لاگ کردن مسیر برای عیب‌یابی راحت‌تر در کنسول داکر
+            Console.WriteLine($"Looking for seed data at: {jsonPath}");
+
             if (!File.Exists(jsonPath))
             {
                 throw new Exception($"Brand seed data not found in path: {jsonPath}");
@@ -22,8 +27,9 @@ namespace Catalog.Infrastructure.Data
 
             var dataText = File.ReadAllText(jsonPath);
             var brands = JsonSerializer.Deserialize<List<ProductBrand>>(dataText);
-            if (brands != null)
+            if (brands != null && brands.Any())
                 collection.InsertMany(brands);
         }
+
     }
 }
