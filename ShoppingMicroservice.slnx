@@ -5,7 +5,11 @@
     <Project Path="Catalog.Core/Catalog.Core.csproj" />
     <Project Path="Catalog.Infrastructure/Catalog.Infrastructure.csproj" />
   </Folder>
-  <Project Path="docker-compose.dcproj">
-    <Build />
-  </Project>
+  <Folder Name="/Solution Items/">
+    <File Path=".editorconfig" />
+    <File Path="docker-compose.dcproj" />
+    <File Path="docker-compose.dcproj.user" />
+    <File Path="docker-compose.override.yml" />
+    <File Path="docker-compose.yml" />
+  </Folder>
 </Solution>

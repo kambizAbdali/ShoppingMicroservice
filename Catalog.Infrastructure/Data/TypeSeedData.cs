@@ -11,7 +11,7 @@ namespace Catalog.Infrastructure.Data
             var existCollection = collection.Find(x => true).Any();
             if (existCollection) return;
 
-            var jsonPath = Path.Combine(AppContext.BaseDirectory, "Data", "SeedData", "types.txt");
+            var jsonPath = Path.Combine(AppContext.BaseDirectory, "Data", "SeedData", "types.json");
             if (!File.Exists(jsonPath))
             {
                 throw new Exception($"Type seed data not found in path: {jsonPath}");
