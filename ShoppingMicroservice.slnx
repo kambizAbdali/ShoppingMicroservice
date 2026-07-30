@@ -1,10 +1,32 @@
 <Solution>
   <Folder Name="/Services/">
-    <Project Path="Catalog.Api/Catalog.Api.csproj" />
-    <Project Path="Catalog.Application/Catalog.Application.csproj" />
-    <Project Path="Catalog.Core/Catalog.Core.csproj" />
-    <Project Path="Catalog.Infrastructure/Catalog.Infrastructure.csproj" />
+    <Folder Name="/Services/Catalog/">
+      <Project Path="services/Catalog/Catalog.Api/Catalog.Api.csproj" />
+      <Project Path="services/Catalog/Catalog.Application/Catalog.Application.csproj" />
+      <Project Path="services/Catalog/Catalog.Core/Catalog.Core.csproj" />
+      <Project Path="services/Catalog/Catalog.Infrastructure/Catalog.Infrastructure.csproj" />
+    </Folder>
+
+    <Folder Name="/Services/Basket/">
+      <Project Path="services/basket/Basket.Api/Basket.Api.csproj" />
+      <Project Path="services/basket/Basket.Application/Basket.Application.csproj" />
+      <Project Path="services/basket/Basket.Core/Basket.Core.csproj" />
+      <Project Path="services/basket/Basket.Infrastructure/Basket.Infrastructure.csproj" />
+    </Folder>
   </Folder>
+  <Folder Name="/Services/basket/">
+    <Project Path="services/basket/Basket.Api/Basket.Api.csproj" />
+    <Project Path="services/basket/Basket.Application/Basket.Application.csproj" />
+    <Project Path="services/basket/Basket.Core/Basket.Core.csproj" />
+    <Project Path="services/basket/Basket.Infrastructure/Basket.Infrastructure.csproj" />
+  </Folder>
+  <Folder Name="/Services/Catalog/">
+    <Project Path="services/Catalog/Catalog.Api/Catalog.Api.csproj" />
+    <Project Path="services/Catalog/Catalog.Application/Catalog.Application.csproj" />
+    <Project Path="services/Catalog/Catalog.Core/Catalog.Core.csproj" />
+    <Project Path="services/Catalog/Catalog.Infrastructure/Catalog.Infrastructure.csproj" />
+  </Folder>
+
   <Folder Name="/Solution Items/">
     <File Path=".editorconfig" />
     <File Path="docker-compose.dcproj" />
@@ -12,4 +34,9 @@
     <File Path="docker-compose.override.yml" />
     <File Path="docker-compose.yml" />
   </Folder>
+  <Project Path="docker-compose.dcproj">
+    <Build />
+  </Project>
+  <Project Path="ShoppingMicroservice.AppHost/ShoppingMicroservice.AppHost.csproj" Id="0d2fe33d-3569-41b4-8345-fd7f6783d13d" />
+  <Project Path="ShoppingMicroservice.ServiceDefaults/ShoppingMicroservice.ServiceDefaults.csproj" />
 </Solution>

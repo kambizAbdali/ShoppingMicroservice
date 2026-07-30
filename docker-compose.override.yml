@@ -1,4 +1,4 @@
-services:
+﻿services:
   catalogdb:
     container_name: catalogdb
     restart: always
@@ -13,6 +13,7 @@ services:
       retries: 5
 
   catalog.api:
+    container_name: catalog.api
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
       - ASPNETCORE_HTTP_PORTS=8080
@@ -25,11 +26,21 @@ services:
       catalogdb:
         condition: service_healthy
     ports:
-      - "9000:8080"
-      - "9001:8081"
+      - "9000:8080" # فقط پورت 9000 را نگه داشتیم
 
-    volumes:
-      - ${APPDATA}/Microsoft/UserSecrets:/home/app/.microsoft/usersecrets:ro
-      - ${APPDATA}/Microsoft/UserSecrets:/root/.microsoft/usersecrets:ro
-      - ${APPDATA}/ASP.NET/Https:/home/app/.aspnet/https:ro
-      - ${APPDATA}/ASP.NET/Https:/root/.aspnet/https:ro
+  basketdb:
+    container_name: basketdb
+    restart: always
+    ports:
+      - "6379:6379"
+
+  basket.api:
+    container_name: basket.api
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_HTTP_PORTS=8080
+      - ConnectionStrings__Redis=basketdb:6379
+    ports:
+      - "9001:8080" # سبد خرید روی پورت 9001
+    depends_on:
+      - basketdb
