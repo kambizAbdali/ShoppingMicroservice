@@ -1,0 +1,5 @@
+{
+  "appHost": {
+    "path": "ShoppingMicroservice.AppHost/ShoppingMicroservice.AppHost.csproj"
+  }
+}

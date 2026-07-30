@@ -34,4 +34,9 @@
     <File Path="docker-compose.override.yml" />
     <File Path="docker-compose.yml" />
   </Folder>
+  <Project Path="docker-compose.dcproj">
+    <Build />
+  </Project>
+  <Project Path="ShoppingMicroservice.AppHost/ShoppingMicroservice.AppHost.csproj" Id="0d2fe33d-3569-41b4-8345-fd7f6783d13d" />
+  <Project Path="ShoppingMicroservice.ServiceDefaults/ShoppingMicroservice.ServiceDefaults.csproj" />
 </Solution>
