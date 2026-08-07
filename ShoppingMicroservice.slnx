@@ -26,6 +26,12 @@
     <Project Path="services/Catalog/Catalog.Core/Catalog.Core.csproj" />
     <Project Path="services/Catalog/Catalog.Infrastructure/Catalog.Infrastructure.csproj" />
   </Folder>
+  <Folder Name="/Services/Discount/">
+    <Project Path="services/Discount/Discount.Api/Discount.Api.csproj" />
+    <Project Path="services/Discount/Discount.Application/Discount.Application.csproj" Id="cf205cb0-dfae-4cc9-976a-763a4e4fe4fb" />
+    <Project Path="services/Discount/Discount.Core/Discount.Core.csproj" />
+    <Project Path="services/Discount/Discount.Infrastructure/Discount.Infrastructure.csproj" Id="faaf3fb4-cf6a-4629-8d4a-d5863bcbd3ad" />
+  </Folder>
 
   <Folder Name="/Solution Items/">
     <File Path=".editorconfig" />
