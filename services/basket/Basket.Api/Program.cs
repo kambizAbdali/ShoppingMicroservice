@@ -1,17 +1,25 @@
+using Basket.Application.gRPCService;
 using Basket.Application.Mapper;
 using Basket.Core.Repository;
 using Basket.Infrastructure.Services;
+using Discount.Application.Protos;
 using Microsoft.OpenApi;
 using System.Reflection;
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.AddServiceDefaults();
- 
+
 // Services 
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddOpenApi();
+
+builder.Services.AddScoped<DiscountGRPCService>();
+builder.Services.AddGrpcClient<DiscountProtoService.DiscountProtoServiceClient>(options =>
+{
+    options.Address = new Uri(builder.Configuration["GrpcSettings:DiscountUrl"]!);
+});
 
 // AutoMapper
 builder.Services.AddAutoMapper(typeof(ProfileMapper).Assembly);

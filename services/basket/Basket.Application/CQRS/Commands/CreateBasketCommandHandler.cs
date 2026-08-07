@@ -1,27 +1,41 @@
 ﻿using AutoMapper;
+using Basket.Application.gRPCService;
 using Basket.Application.Responses;
 using Basket.Core.Entities;
 using Basket.Core.Repository;
 using MediatR;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
-namespace Basket.Application.CQRS.Commands
+namespace Basket.Application.CQRS.Commands;
+
+public sealed class CreateBasketCommand : IRequest<ShoppingCartResponse>
 {
-    public class CreateBasketCommand : IRequest<ShoppingCartResponse>
-    {
-        public string UserName { get; set; }
-        public List<ShoppingCartItem> Items { get; set; }
-    }
-    public class CreateBasketCommandHandler(IBasketRepository repository, IMapper mapper) : IRequestHandler<CreateBasketCommand, ShoppingCartResponse>
-    {
-        public async Task<ShoppingCartResponse> Handle(CreateBasketCommand request, CancellationToken cancellationToken)
-        {
+    public string UserName { get; set; } = string.Empty;
+    public List<ShoppingCartItem> Items { get; set; } = [];
+}
 
-            var shoppingCart = mapper.Map<ShoppingCart>(request);
-            var createdBasket = await repository.UpdateBasket(shoppingCart);
-            return mapper.Map<ShoppingCartResponse>(createdBasket);
+public sealed class CreateBasketCommandHandler(
+    IBasketRepository repository,
+    IMapper mapper,
+    DiscountGRPCService discountGRPCService)
+    : IRequestHandler<CreateBasketCommand, ShoppingCartResponse>
+{
+    public async Task<ShoppingCartResponse> Handle(
+        CreateBasketCommand request,
+        CancellationToken cancellationToken)
+    {
+        foreach (var item in request.Items)
+        {
+            if (string.IsNullOrWhiteSpace(item.ProductId))
+                continue;
+
+            var discount = await discountGRPCService.GetDiscountByProducIdAsync(item.ProductId);
+            item.Price -= discount.Amount;
         }
+
+        var shoppingCart = mapper.Map<ShoppingCart>(request);
+        var updatedBasket = await repository.UpdateBasket(shoppingCart);
+
+        return mapper.Map<ShoppingCartResponse>(updatedBasket);
     }
 }
+ 

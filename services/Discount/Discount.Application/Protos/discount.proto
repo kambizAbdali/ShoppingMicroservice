@@ -1,0 +1,72 @@
+﻿syntax = "proto3";
+
+option csharp_namespace = "Discount.Application.Protos";
+
+package discount;
+
+// ------------------- Request and Response Messages -------------------
+
+// Request to get a discount by product name
+message GetDiscountByProductNameRequest {
+  string productName = 1;
+}
+
+// Request to get a discount by product ID
+message GetDiscountByProductIdRequest {
+  string productId = 1;
+}
+
+// Request to create a new discount
+message CreateDiscountRequest {
+  CouponModel coupon = 1;
+}
+
+// Request to update an existing discount
+message UpdateDiscountRequest {
+  CouponModel coupon = 1;
+}
+
+// Request to delete a discount by product ID
+message DeleteDiscountRequest {
+  string productId = 1;
+}
+
+// Request to delete a discount by product name
+message DeleteDiscountByNameRequest {
+  string productName = 1;
+}
+
+// Response indicating the success of a delete operation
+message DeleteDiscountResponse {
+  bool success = 1;
+}
+
+// Main coupon model representing a discount
+message CouponModel {
+  int32 id = 1;                // Auto-generated ID (from database)
+  string productId = 2;        // Product identifier
+  string productName = 3;      // Product name
+  string description = 4;      // Discount description
+  int32 amount = 5;            // Discount amount (in currency units)
+}
+
+// Discount service definition
+service DiscountProtoService {
+  // Get a discount by product name
+  rpc GetDiscountByProductName (GetDiscountByProductNameRequest) returns (CouponModel);
+
+  // Get a discount by product ID
+  rpc GetDiscountByProductId (GetDiscountByProductIdRequest) returns (CouponModel);
+
+  // Create a new discount
+  rpc CreateDiscount (CreateDiscountRequest) returns (CouponModel);
+
+  // Update an existing discount
+  rpc UpdateDiscount (UpdateDiscountRequest) returns (CouponModel);
+
+  // Delete a discount by product ID
+  rpc DeleteDiscount (DeleteDiscountRequest) returns (DeleteDiscountResponse);
+
+  // Delete a discount by product name
+  rpc DeleteDiscountByName (DeleteDiscountByNameRequest) returns (DeleteDiscountResponse);
+}
