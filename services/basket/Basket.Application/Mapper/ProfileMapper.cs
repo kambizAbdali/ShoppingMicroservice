@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using Basket.Application.CQRS.Commands;
+using Basket.Application.Features.Basket.Commands;
 using Basket.Application.Responses;
 using Basket.Core.Entities;
 

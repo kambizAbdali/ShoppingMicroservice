@@ -1,13 +1,8 @@
-﻿using AutoMapper;
-using Catalog.Application.Commands.Products;
+﻿using Catalog.Application.Features.Queries.Products;
 using Catalog.Application.Mapper;
-using Catalog.Application.Queries.Brands;
-using Catalog.Application.Queries.Products;
-using Catalog.Application.Responses;
 using Catalog.Core.Repositories;
 using Catalog.Infrastructure.Data;
 using Catalog.Infrastructure.Repositories;
-using MediatR;
 using Microsoft.OpenApi;
 using System.Reflection;
 

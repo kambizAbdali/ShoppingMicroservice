@@ -1,7 +1,7 @@
-﻿using Catalog.Application.Commands.Products;
-using Catalog.Application.Queries.Brands;
-using Catalog.Application.Queries.Products;
-using Catalog.Application.Queries.Types;
+﻿using Catalog.Application.Features.Commands.Products;
+using Catalog.Application.Features.Queries.Brands;
+using Catalog.Application.Features.Queries.Products;
+using Catalog.Application.Features.Queries.Types;
 using Catalog.Application.Responses;
 using Catalog.Core.EntityParams;
 using MediatR;
